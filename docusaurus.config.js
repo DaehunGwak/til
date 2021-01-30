@@ -9,12 +9,17 @@ module.exports = {
   organizationName: "DaehunGwak", // Usually your GitHub org/user name.
   projectName: "til", // Usually your repo name.
   themeConfig: {
+    colorMode: {
+      defaultMode: 'dark',
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
+    },
     navbar: {
-      title: "Today I Learned",
-      logo: {
-        alt: "My Site Logo",
-        src: "img/logo.svg",
-      },
+      title: "Ordi TIL 📚",
+      // logo: {
+      //   alt: "My Site Logo",
+      //   src: "img/logo.svg",
+      // },
       items: [
         {
           to: "docs/",
@@ -92,14 +97,14 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           // Please change this to your repo.
           editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/",
+            "https://github.com/daehungwak/til/edit/main/",
         },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            "https://github.com/facebook/docusaurus/edit/master/website/blog/",
-        },
+        // blog: {
+        //   showReadingTime: true,
+        //   // Please change this to your repo.
+        //   editUrl:
+        //     "https://github.com/facebook/docusaurus/edit/master/website/blog/",
+        // },
         theme: {
           customCss: require.resolve("./src/css/custom.css"),
         },
