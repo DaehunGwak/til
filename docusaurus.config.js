@@ -98,6 +98,7 @@ module.exports = {
           // Please change this to your repo.
           editUrl:
             "https://github.com/daehungwak/til/edit/main/",
+          showLastUpdateTime: true,
         },
         // blog: {
         //   showReadingTime: true,
@@ -110,5 +111,5 @@ module.exports = {
         },
       },
     ],
-  ],
+  ]
 };
