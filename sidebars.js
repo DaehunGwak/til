@@ -1,12 +1,17 @@
 module.exports = {
   docs: [
-    'main',
+    "main",
     {
-      type: 'category',
-      label: 'Docusaurus',
+      type: "category",
+      label: "Docusaurus",
+      items: ["docusaurus/til"],
+    },
+    {
+      type: "category",
+      label: "Web",
       items: [
-        'docusaurus/til'
-      ]
-    }
-  ]
+        { html: ["web/html/intro", "web/html/elements", "web/html/sections"] },
+      ],
+    },
+  ],
 };
