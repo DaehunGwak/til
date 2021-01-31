@@ -35,7 +35,7 @@ github pages를 활용해 배포할 예정인데, 하기 전 환경 변수들을
 난 매번 GIT_USER를 배포할때마다 앞에 달기 귀찮어, 로컬 맥에 환경변수를 export 하였다.
 
 ```sh
-export "GIT_USER=DaehunGwak"
+echo "export GIT_USER=DaehunGwak" >> ~/.zshrc
 npm run deploy
 ```
 

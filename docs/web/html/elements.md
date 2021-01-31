@@ -3,6 +3,9 @@ id: elements
 title: HTML 요소 - 들어가기
 ---
 
+> 해당 글은 inflearn [초보자를 위한 HTML 기초](https://www.inflearn.com/course/html-%ED%91%9C%EC%A4%80-%EA%B8%B0%EC%B4%88/) 를 보고 정리한 것입니다.
+> 문제가 될 시 삭제하겠습니다.
+
 ## 요소 (Elements)
 
 - HTML 에서는 `어떤 요소를 어떤 시점에 쓰느냐에 따라 완전히 다른 의미`를 가지게 됨
