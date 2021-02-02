@@ -10,7 +10,14 @@ module.exports = {
       type: "category",
       label: "Web",
       items: [
-        { html: ["web/html/intro", "web/html/elements", "web/html/sections"] },
+        {
+          html: [
+            "web/html/intro",
+            "web/html/elements",
+            "web/html/document-metadata",
+            "web/html/sections",
+          ],
+        },
       ],
     },
   ],
