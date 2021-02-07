@@ -16,7 +16,11 @@ module.exports = {
             "web/html/elements",
             "web/html/document-metadata",
             "web/html/sections",
+            "web/html/grouping",
           ],
+          javascript: [
+            'web/javascript/events',
+          ]
         },
       ],
     },
