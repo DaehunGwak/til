@@ -9,7 +9,7 @@ title: 이벤트 버블링, 캡처링, 위임
 
 ![이벤트 플로우](/img/docs/web/javascript/event-delegation/eventflow.svg)
 
-> 이미지 출처: [ko.javascript.info]([/article/bubbling-and-capturing/eventflow.svg](https://ko.javascript.info/bubbling-and-capturing))
+> 이미지 출처: [ko.javascript.info](https://ko.javascript.info/bubbling-and-capturing)
 
 - 순서
   1. **이벤트 캡처링**

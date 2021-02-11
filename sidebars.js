@@ -18,9 +18,8 @@ module.exports = {
             "web/html/sections",
             "web/html/grouping",
           ],
-          javascript: [
-            'web/javascript/events',
-          ]
+          javascript: ["web/javascript/events"],
+          "htmlcss-bugless-101": ["web/htmlcss/01-intro"],
         },
       ],
     },
