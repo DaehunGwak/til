@@ -3,11 +3,6 @@ module.exports = {
     "main",
     {
       type: "category",
-      label: "Docusaurus",
-      items: ["docusaurus/til"],
-    },
-    {
-      type: "category",
       label: "Web",
       items: [
         {
@@ -20,8 +15,14 @@ module.exports = {
           ],
           javascript: ["web/javascript/events"],
           "htmlcss-bugless-101": ["web/htmlcss/01-intro"],
+          concept: ["web/concept/ssr"],
         },
       ],
+    },
+    {
+      type: "category",
+      label: "Docusaurus",
+      items: ["docusaurus/til"],
     },
   ],
 };
