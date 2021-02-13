@@ -1,6 +1,6 @@
 ---
 id: 01-intro
-title: 시작하기에 앖서
+title: 시작하기에 앞서
 ---
 
 > 다음은 [김버그의 HTML&CSS는 재밌다](https://edu.goorm.io/learn/lecture/20583/%EA%B9%80%EB%B2%84%EA%B7%B8%EC%9D%98-html-css%EB%8A%94-%EC%9E%AC%EB%B0%8C%EB%8B%A4) 를 보고 정리하는 글입니다.

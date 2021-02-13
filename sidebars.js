@@ -14,10 +14,18 @@ module.exports = {
             "web/html/grouping",
           ],
           javascript: ["web/javascript/events"],
-          "htmlcss-bugless-101": ["web/htmlcss/01-intro"],
+          "htmlcss-bugless-101": [
+            "web/htmlcss/01-intro",
+            "web/htmlcss/02-tags-basic",
+          ],
           concept: ["web/concept/ssr"],
         },
       ],
+    },
+    {
+      type: "category",
+      label: "책",
+      items: ["books/clean-coder"]
     },
     {
       type: "category",
