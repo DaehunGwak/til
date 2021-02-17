@@ -13,10 +13,16 @@ module.exports = {
             "web/html/sections",
             "web/html/grouping",
           ],
-          javascript: ["web/javascript/events"],
+          javascript: [
+            "web/javascript/events",
+            "web/javascript/debounce-throttle",
+          ],
           "htmlcss-bugless-101": [
             "web/htmlcss/01-intro",
             "web/htmlcss/02-tags-basic",
+          ],
+          dom: [
+            "web/dom/document-fragment",
           ],
           concept: ["web/concept/ssr"],
         },

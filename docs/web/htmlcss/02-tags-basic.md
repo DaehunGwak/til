@@ -103,4 +103,9 @@ title: HTML 기초 - tags
 </dl>
 ```
 
--
+## 인용 Quotations
+
+- `<blockquote>`
+  - 문단 전체
+- `<q>`
+  - 문장 단위
