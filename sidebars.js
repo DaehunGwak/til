@@ -31,7 +31,10 @@ module.exports = {
     {
       type: "category",
       label: "책",
-      items: ["books/clean-coder"]
+      items: [
+        "books/clean-coder",
+        "books/python-algo-interview"
+      ]
     },
     {
       type: "category",
