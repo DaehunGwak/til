@@ -30,6 +30,17 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Vue",
+      items: [
+        {
+          "Vue Mastery": [
+            "vue/vue-mastery/vue3-ts"
+          ]
+        }
+      ]
+    },
+    {
+      type: "category",
       label: "책",
       items: [
         "books/clean-coder",
