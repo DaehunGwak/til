@@ -44,7 +44,8 @@ module.exports = {
       label: "책",
       items: [
         "books/clean-coder",
-        "books/python-algo-interview"
+        "books/python-algo-interview",
+        "books/practices-of-the-python-pro",
       ]
     },
     {

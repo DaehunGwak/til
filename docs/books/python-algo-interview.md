@@ -94,3 +94,81 @@ for i, v in enumerate(a):
     print(i ,v)
 ```
 
+- f-string (3.6+)
+
+```py
+# format string
+>>> print("{}: {}".format(idx, fruit))
+2: apple
+
+# f-string
+>>> print(f"{idx}: {fruit}")
+2: apple
+```
+
+- pass
+  - 전체 골격을 잡아놓고 구현을 나중에 할 때, pass 키워드로 구현 생략 가능
+  - null operation
+
+- locals()
+  - 로컬 심볼 테이블 딕셔너리를 반환
+
+```py
+from pprint import pprint
+a = 100
+pprint(locals())
+'''
+{'__annotations__': {},
+ '__builtins__': <module 'builtins' (built-in)>,
+ '__doc__': None,
+ '__loader__': <class '_frozen_importlib.BuiltinImporter'>,
+ '__name__': '__main__',
+ '__package__': None,
+ '__spec__': None,
+ 'a': 100,
+ 'b': {'c': 'asdkfasdkfadf'},
+ 'pprint': <function pprint at 0x7fb59de1baf0>}
+'''
+```
+
+### 스타일가이드
+
+- 변수, 메소드(함수) 명
+- 리스트 컴프리헨션
+- [구글 파이썬 스타일 가이드](https://google.github.io/styleguide/pyguide.html)
+  - 함수 기본값으로 가변 객체 달지 않기
+    - [], {} 를 달면 이후 해당 객체를 수정했을 때 기본값이 계속 수정되어 있는 채로 들어오게 됨
+    - 명시적으로 None을 넣고 `if parameter is None` 으로 검사하여 기본값을 설정하는 것을 지향
+  - falsey value를 if 검사할 때 굳이 긍정문으로 바꿀 필요는 없음 like `if somthing_list !== []:`
+  - 해당 자료는 꼭 나중에 정독을 해보는 것이 좋을 것 같다
+
+## 4. 빅오, 자료형
+
+### 빅오
+
+- 자료형 크기에 따른 수학적 속도 표기법 (시간복잡도)
+- 주어진 자료의 최선/평균/최악의 경우에서 수행시간 상한선을 의미
+- 분활 상환 분석법
+  - 빅오는 너무 비관적이라서 등장
+- 병렬화로 성능 개선도 가능
+  - 대표적으로 딥러닝, GPU
+
+### 자료형
+
+- 자료형 계층구조
+  - `None`
+  - 숫자
+    - `float`
+    - 정수형
+      - `int`
+      - `bool`
+  - 집합형 `set`
+  - 매핑 `dict`
+  - 시퀸스
+    - 불변
+      - `str`
+      - `tuple`
+      - `bytes`
+    - 가변
+      - `list`
+
