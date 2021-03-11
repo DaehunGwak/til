@@ -172,3 +172,79 @@ pprint(locals())
     - 가변
       - `list`
 
+## 5. 리스트, 딕셔너리
+
+### List
+
+- 동적 배열
+  - `ob_item`이 이중 포인터로 CPython에 구현되어 있음
+  - 해당 이중 포인터는 동적 배열을 가리킴
+  - 가리키고 있는 동적 배열의 아이템들은 객체 참조
+    - 파이썬의 모든 것은 객체
+- 큐기능을 List로 사용할 수 있지만 Deque로 사용하면 front pop 시 성능 개선 됨
+- out of index는 `IndexError` 를 발생시킴
+- 주의가 필요한 연산
+  - O(n)
+    - `elem in a`
+    - `a.count(elem)`
+    - `a.index(elem)`
+    - `a.pop(0)` -> deque로 개선 가능
+    - `del a[i]`
+    - `min(a)` `max(a)`
+    - `a.reverse()`
+  - O(n log n)
+    - `a.sort()` -> Timsort 사용
+  - O(k)
+    - slicing `a[i:j]` (k = j - i)
+
+### Dictionary
+
+- 해시 테이블
+- (3.6-) 입력 순서가 유지되지 않음
+  - `collections.OrderedDict()`로 해결 가능
+- (3.7+) 내부적으로 인덱스를 관리하므로 입력 순서가 유지됨
+- `defaultdict()` `Counter()` 등 도움되는 dict 자료형이 많음
+- 존재하지 않는 키를 조회할 때는 `KeyError` 가 발생
+
+`defaultdict()`
+
+없는 키에 대해 기본값을 지정하게 해주는 dict
+
+```py
+>>> a = collections.defaultdict(int)
+>>> a['C'] += 1
+>>> a
+defaultdict(<class 'int'>, {'C': 1})
+```
+
+`Counter()`
+
+iterable 한 객체(list, str, tuple 등) 의 개수를 계산해 딕셔너리로 반환
+
+```py
+>>> import collections
+>>> samples = [1, 3, 7, 10, 5, 4, 3, 7, 5, 5]
+>>> counter = collections.Counter(samples)
+>>> counter
+Counter({5: 3, 3: 2, 7: 2, 1: 1, 10: 1, 4: 1})
+
+>>> counter.most_common(3)  # 상위 3개
+[(5, 3), (3, 2), (7, 2)]
+```
+
+`OrderedDict()`
+
+- 입력한 해시 테이블의 순서가 보통 유지 안되므로, 해당 지원을 위해 만들어짐
+- 3.7+ 에선 기본적으로 dict 에서 순서가 유지되나 권장되는 방법은 아님
+- 순서가 유지되도록 의도하려면 OrderedDict를 사용하자
+
+## 6. 문자열 조작
+
+> 각 문제를 풀며 새로 알게된점 정리
+
+- 문자열 뒤집기는 slicing이 젤 빠름 `a[::-1]`
+  - `a.reverse()` 로 in-place 뒤집기도 가능
+- pop front가 빈번하면 `deque` 로 성능 최적화 가능
+- lambda, map, filter 는 가독성이 떨어지므로 사용시 주의
+- `Counter`를 사용하면 list item 개수를 쉽게 셀 수 있음
+- `defaultdict`로 dict에서 key 있는지 체크하는 연산을 줄일 수 있음
