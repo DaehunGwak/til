@@ -30,6 +30,27 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Spring",
+      items: [
+        {
+          type: "category",
+          label: "김영한님의 스프링 입문 - 노트",
+          items: [
+            "spring/beginner/0-intro",
+            "spring/beginner/1-project-settings",
+          ],
+        },
+      ],
+    },
+    {
+      type: "category",
+      label: "Java",
+      items: [
+        "java/mac-jenv",
+      ],
+    },
+    {
+      type: "category",
       label: "Vue",
       items: [
         {
@@ -37,7 +58,7 @@ module.exports = {
             "vue/vue-mastery/vue3-ts"
           ]
         }
-      ]
+      ],
     },
     {
       type: "category",
