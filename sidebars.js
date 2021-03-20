@@ -62,6 +62,13 @@ module.exports = {
     },
     {
       type: "category",
+      label: "Webpack",
+      items: [
+        "webpack/webpack-beginner",
+      ],
+    },
+    {
+      type: "category",
       label: "책",
       items: [
         "books/clean-coder",
