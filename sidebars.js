@@ -38,6 +38,9 @@ module.exports = {
           items: [
             "spring/beginner/0-intro",
             "spring/beginner/1-project-settings",
+            "spring/beginner/2-web-dev-basic",
+            "spring/beginner/3-dev-backend",
+            "spring/beginner/999-intellij-shortcut",
           ],
         },
       ],
