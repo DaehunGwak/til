@@ -40,6 +40,7 @@ module.exports = {
             "spring/beginner/1-project-settings",
             "spring/beginner/2-web-dev-basic",
             "spring/beginner/3-dev-backend",
+            "spring/beginner/4-bean-dependency",
             "spring/beginner/999-intellij-shortcut",
           ],
         },
