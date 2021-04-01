@@ -51,10 +51,135 @@ insert into member(name) values('spring');
 
 ## 순수 JDBC
 
+> 고대의 20년 전 방식
+
+아래 jdbc + h2 커넥션을 위한 패키지 추가
+
+`build.gradle` 에 다음 코드 추가
+
+```gradle
+implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+runtimeOnly 'com.h2database:h2'
+```
+
+`application.properties` 에 db 설정 추가
+
+```properties
+
+```
+
+JdbcMemberRepository 를 추가하면서 알아두면 좋은 것
+
+```java
+public class JdbcMemberRepository implements MemberRepository {
+
+    private final DataSource dataSource;
+
+    // ...(생략)
+
+    /**
+     * spring 통해서 db 커넥션을 할 때, (직접 쓸일은 잘 없음)
+     * DataSsourceUtils 를 통핸 db connection 획득
+     * 이전에 트랜잭션 걸릴 수 있기 때문에, 똑같은 커넥션을 유지하기 위해 DataSourceUtils를 사용하는 것이 좋음.
+     */
+    private Connection getConnection() {
+        return DataSourceUtils.getConnection(dataSource);
+    }
+
+    /**
+     * `getConnection()` 에서 DataSourceUtils를 사용해야하는 이유를
+     * 간단히 설명함
+     */
+    private void close(Connection conn) throws SQLException {
+        DataSourceUtils.releaseConnection(conn, dataSource);
+    }
+```
+
+### OCP, 개방-폐쇄의 원칙
+
+스프링에서는 DI를 지원해서 기존 코드를 고치지 않고, 설정 코드만으로 수정 가능
+
+```java
+@Configuration
+public class SpringConfig {
+
+    private DataSource dataSource;
+
+    @Autowired
+    public SpringConfig(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
+    // ...(생략)
+
+    @Bean
+    public MemberRepository memberRepository() {
+//        return new MemoryMemberRepository();
+        return new JdbcMemberRepository(dataSource);
+        // 설정코드 수정만으로 해결!
+    }
+}
+```
+
+- 위와 같이 개발을 진행하면 `OCP`를 지키는 것임
+- SOLID 중, `개방-폐쇄 원칙` (OCP, Open-Closed Principle)
+  - 확장에는 열려있고, 수정, 변경에는 닫혀있다.
+  - OOP (interface 와 같은 것) 을 잘 이용하면
+    - 기존 코드를 수정하지 않고 개발 가능
+    - 조립하는 코드를 변경하긴 해야함
+
 ## 스프링 통합 테스트
+
+> DB 까지 연결되서 스프링에서 진행되는 통합 테스트
+
+- `@SpringBootTest`
+  - 스프링 통합 테스트로, 스프링도 같이 띄어서 테스트해야할 시 해당 어노테이션을 사용
+  - 스프링 컨테이너 + 테스트를 실행
+- `@Transactional`
+  - 테스트는 반복할 수 있어야 함
+  - 테스트에 해당 노테이션이 붙을 경우, 실행 이후 쿼리들을 롤백해줌
+- 단위 테스트, 통합 테스트?
+  - 순수한 `단위 테스트`가 좋은 테스트일 확률이 높음
 
 ## 스프링 jdbcTemplate
 
+- 스프링 JdbcTemplate 과 MyBatis 같은 라이브러리는 JDBC API 의 반복적인 부분을 제거해줌
+  - 대신 SQL 은 직접 작성
+- 왜 template 인가?
+  - Template Method Pattern을 사용했기 때문
+  - [템플릿 메소드 패턴 정리된 좋은 블로그 글](https://yaboong.github.io/design-pattern/2018/09/27/template-method-pattern/)
+
 ## JPA
 
+- SQL 쿼리까지 자동으로 처리해줌
+- 객체 중심의 설계로 패러다임 전화할 수 있음
+- 개발 생산성이 크게 증대
+
+### `appplication.properties` 에 추가되는 것들
+
+- `spring.jpa.show-sql=true`: 쿼리 날릴때 sql 문 볼래여
+- `spring.jpa.hibernate.ddl-auto=none`: JPA를 통한 테이블 생성기능은 사용하지 않겠다.
+  - 이미 만들어져 있으므로
+
+### JPA 특징
+
+- `JPA interface 에 hibernate 구현체를 사용한다고 보면 됨`
+- JPA는 ORM 기술에 대한 Java 버전 API 명세
+  - Java Persistent API
+  - Object Relation Mapping
+- JPA를 쓸려면 `EntityManager`를 주입 받아야 함
+  - `EntityManager` 는 `spring-boot-starter-data-jpa` 패키지를 받게 되면 스프링 컨테이너에 자동으로 추가되게 됨
+- 단점
+  - id 로 찾는 경우에는 쿼리(?) 를 작성안해도 되지만,
+  - id 외, 다른 필드로 crud 할 경우, `jpql` 을 작성해야 됨
+
+### 주의사항
+
+- `@Transactional` 으로 감싸줘야함
+  - CUD 는 트랜잭션으로 감싸줘야 함
+
+
 ## 스피링 데이터 JPA
+
+> JPA의 `jpql` 작성을 해야하는 단점을 제거
+
