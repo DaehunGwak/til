@@ -75,13 +75,18 @@ module.exports = {
     },
     {
       type: "category",
+      label: "git",
+      items: ["git/config-account"],
+    },
+    {
+      type: "category",
       label: "책",
       items: [
         "books/clean-coder",
         "books/python-algo-interview",
         "books/practices-of-the-python-pro",
       ]
-    },
+    },    
     {
       type: "category",
       label: "Docusaurus",
