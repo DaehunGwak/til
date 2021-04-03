@@ -178,8 +178,20 @@ public class SpringConfig {
 - `@Transactional` 으로 감싸줘야함
   - CUD 는 트랜잭션으로 감싸줘야 함
 
-
-## 스피링 데이터 JPA
+## 스프링 데이터 JPA
 
 > JPA의 `jpql` 작성을 해야하는 단점을 제거
+
+- repository에 구현체 없이 DB CRUD 가 가능하도록 제공
+- RDB를 사용한다면 필수라고 하심
+- JPA를 먼저 공부한 후, 스프링 데이터 JPA 를 공부할 것을 권장
+ 
+ ### 스프링 데이터 JPA 기능
+
+- 인터페이스를 통한 기본적인 CRUD 를 개발하지 않고 자동으로 제공해줌
+- id를 제외한 다른 필드는 `findByName` `findByUserEmail` 과 같이 정의해놓으면 자동으로 구현해줌
+- 페이징 기능 자동 제공
+
+> 스프링 데이터 JPA를 기본적으로 사용하되, 복잡한 동적 쿼리는 querydsl 라이브러리를 사용하여 직접 구현 할 수 있음
+> mybatis, jdbctemplate 과 같이 쿼리를 직접짜는 라이브러리와 같이 사용할 수도 있음
 
