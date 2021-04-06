@@ -49,6 +49,14 @@ module.exports = {
             "spring/beginner/999-intellij-shortcut",
           ],
         },
+        {
+          type: "category",
+          label: "실전! 스프링 부트 JPA 활용 1",
+          items: [
+            "spring/practical-boot-jpa-1/00-intro",
+            "spring/practical-boot-jpa-1/01-setting",
+          ],
+        },
       ],
     },
     {
