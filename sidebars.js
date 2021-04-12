@@ -34,6 +34,14 @@ module.exports = {
       items: [
         {
           type: "category",
+          label: "실전! 스프링 부트 JPA 활용 1",
+          items: [
+            "spring/practical-boot-jpa-1/00-intro",
+            "spring/practical-boot-jpa-1/01-setting",
+          ],
+        },
+        {
+          type: "category",
           label: "김영한님의 스프링 입문 - 노트",
           items: [
             "spring/beginner/0-intro",
@@ -49,14 +57,7 @@ module.exports = {
             "spring/beginner/999-intellij-shortcut",
           ],
         },
-        {
-          type: "category",
-          label: "실전! 스프링 부트 JPA 활용 1",
-          items: [
-            "spring/practical-boot-jpa-1/00-intro",
-            "spring/practical-boot-jpa-1/01-setting",
-          ],
-        },
+      
       ],
     },
     {
@@ -64,6 +65,14 @@ module.exports = {
       label: "Java",
       items: [
         "java/mac-jenv",
+        "java/mac-tomcat",
+      ],
+    },
+    {
+      type: "category",
+      label: "MySQL",
+      items: [
+        "mysql/docker-mysql",
       ],
     },
     {
