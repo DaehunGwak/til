@@ -64,6 +64,21 @@ module.exports = {
       type: "category",
       label: "Java",
       items: [
+        {
+          type: "category",
+          label: "이펙티브 자바 3판 스터디",
+          items: [
+            "java/effective-java/01-intro",
+            "java/effective-java/02-destroy-create-object",
+          ]
+        },
+        {
+          type: "category",
+          label: "백기선님의 기본 live-study",
+          items: [
+            "java/live-study/01-jvm",
+          ]
+        },
         "java/mac-jenv",
         "java/mac-tomcat",
       ],
