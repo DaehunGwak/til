@@ -120,6 +120,14 @@ module.exports = {
         "books/clean-coder",
         "books/python-algo-interview",
         "books/practices-of-the-python-pro",
+        {
+          type: "category",
+          label: "클린코드",
+          items: [
+            "books/cleancode/01",
+            "books/cleancode/02",
+          ]
+        }
       ]
     },    
     {
