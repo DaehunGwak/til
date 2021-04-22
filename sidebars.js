@@ -66,10 +66,17 @@ module.exports = {
       items: [
         {
           type: "category",
-          label: "이펙티브 자바 3판 스터디",
+          label: "이펙티브 자바",
           items: [
             "java/effective-java/01-intro",
             "java/effective-java/02-destroy-create-object",
+          ]
+        },
+        {
+          type: "category",
+          label: "자바의 정석",
+          items: [
+            "java/essence-of-java/01-05",
           ]
         },
         {
@@ -79,9 +86,23 @@ module.exports = {
             "java/live-study/01-jvm",
           ]
         },
+        {
+          type: "category",
+          label: "유틸 정리",
+          items: [
+            "java/util/weak-hash-map",
+          ]
+        },
         "java/mac-jenv",
         "java/mac-tomcat",
       ],
+    },
+    {
+      type: "category",
+      label: "OOP",
+      items: [
+        "oop/solid",
+      ]
     },
     {
       type: "category",
@@ -126,6 +147,7 @@ module.exports = {
           items: [
             "books/cleancode/01",
             "books/cleancode/02",
+            "books/cleancode/03",
           ]
         }
       ]

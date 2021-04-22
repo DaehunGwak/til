@@ -263,3 +263,33 @@ list.add(10); // list.add(new Integer(10)); 과 같음
 - item 50. 방어적 복사와는 대조적인 내용임
   - `방어적 복사가 필요한 상황에서 객체를 재사용 했을때의 피해가 더큼`
   - 해당장은 필요없는 객체를 반복 생성했을 때를 주로 다루고 있음
+
+## Item 07. 다 쓴 객체 참조를 해제하라
+
+- 가비지 컬렉션 (GC) 을 갖춘 Java라도 메모리 관리는 유념해야함
+- [item 7. 메모리 누수 예제](https://github.com/DaehunGwak/study-java/tree/main/effective-java/src/ch02/item07/Stack.java)
+  - 메모리 누수는 GC 활동과 메모리 사용량이 늘어나 성능저하를 불러 일으킴
+    - 심할땐 디스크 페이징이나 OutOfMemoryError (OOM) 를 일으켜 앱이 종료됨
+  - 예제에서 문제가 있는 `pop()` 에서 메모리 누수가 발생함
+    - elements의 참조를 따로 해제 하지 않아 pop이 되었지만 해당 Object는 GC의 대상이 되지 않음
+    - 개선된 pop에서는 null처리를 하여 해결
+- 강박적으로 다쓴 객체를 null처리할 필요는 없고, 위 처럼 예외적인 경우에만 null처리 하면됨
+- itme 57에 변수 범위를 최소화하는 테크닉으로 스코프 밖으로 변수를 밀어내면 GC의 대상이 자동으로 됨
+
+### 메모리 누수 주의 케이스
+
+- 메모리를 직접 관리하는 경우
+  - null 처리
+- 캐시
+  - WeakHashMap 을 사용 (이러한 상황에서만 유용)
+    - key에 해당하는 value 객체가 존재하지 않게 될 경우, 자동으로 key에서 제거 GC 대상이 됨
+    - [WeakHashMap 예제](https://github.com/DaehunGwak/study-java/tree/main/effective-java/src/ch02/item07/WeakHashMapTest.java)
+- listener or callback
+  - 사용자가 콜백을 등록만하고 해제하지 않음...
+  - 콜백을 weak reference로 등록!
+
+### 핵심정리 7
+
+- 메모리 누수는 잘 드러나지 않음..
+- 철저한 코드리뷰 혹은 힙 프로파일러 같은 디버깅 도구로 예방가능
+- 메모리 누수 관리에 대해 예방법을 익혀두는 것이 매우 중요
