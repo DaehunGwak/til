@@ -34,6 +34,14 @@ module.exports = {
       items: [
         {
           type: "category",
+          label: "자바 ORM 표준 JPA 프로그래밍",
+          items: [
+            "spring/jpa/00",
+            "spring/jpa/01",
+          ]
+        },
+        {
+          type: "category",
           label: "실전! 스프링 부트 JPA 활용 1",
           items: [
             "spring/practical-boot-jpa-1/00-intro",

@@ -293,3 +293,30 @@ list.add(10); // list.add(new Integer(10)); 과 같음
 - 메모리 누수는 잘 드러나지 않음..
 - 철저한 코드리뷰 혹은 힙 프로파일러 같은 디버깅 도구로 예방가능
 - 메모리 누수 관리에 대해 예방법을 익혀두는 것이 매우 중요
+
+## Item 08. finalizer 와 cleaner 사용을 피하라
+
+- 자바에서 제공하는 객체 소멸자, finalizer 와 cleaner
+- finalizer 는 예측할 수 없고 상황에 따라 위험할 수 있어 일반적으로 불필요
+  - 기본적으로 쓰지말기
+- cleaner 도 finalizer 대안으로 java 9 에 나왔지만 예측할 수 없고, 느리고, 불필요
+- c++ 의 destructor(파괴자) 와는 다른 개념으로
+  - 자원 해제를 활용하려면 try-with-resources 로 해결하자 (Item 09)
+- finalizer, cleaner 둘다 언제 제때 실행해야하는지 보장할 수 없음
+- AutoCloseable 를 구현 + try-with-resources 활용으로 자원 해제를 보장해줄 수 있음
+
+### 그럼 finalizer와 cleaner는 왜 만들었는가
+  
+- 자원회수를 finalizer와 cleaner에서 구현하면 안하는 것보단 나음
+- 네이티브 피어와 연결된 객체
+
+### 예제
+
+- [Item 08. Room 예제](https://github.com/DaehunGwak/study-java/tree/main/effective-java/src/ch02/item08)
+  - Adult 클래스에서 AutoCloseable 구현 + try-with-resources 조합을 볼 수 있음
+  - Teenager에선 cleaner가 실행되지 않고 있는 모습을 확인할 수 있음
+
+### 정리
+
+- clenaer, finalizer는 안정망 역할 or 중요하지 않은 네이티브 자원 회수 용도로만 활용하자~
+- 물론 그냥 안쓰는게 최고
