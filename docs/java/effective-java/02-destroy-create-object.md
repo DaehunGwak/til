@@ -312,7 +312,7 @@ list.add(10); // list.add(new Integer(10)); 과 같음
 
 ### 예제
 
-- [Item 08. Room 예제](https://github.com/DaehunGwak/study-java/tree/main/effective-java/src/ch02/item08)
+- [Item 08. Room 예제](https://github.com/DaehunGwak/study-java/blob/main/effective-java/src/ch02/item08)
   - Adult 클래스에서 AutoCloseable 구현 + try-with-resources 조합을 볼 수 있음
   - Teenager에선 cleaner가 실행되지 않고 있는 모습을 확인할 수 있음
 
@@ -320,3 +320,10 @@ list.add(10); // list.add(new Integer(10)); 과 같음
 
 - clenaer, finalizer는 안정망 역할 or 중요하지 않은 네이티브 자원 회수 용도로만 활용하자~
 - 물론 그냥 안쓰는게 최고
+
+## Item 09. try-finally 보단 try-with-resources를 사용하라
+
+- 기존 자원해제는 try-finally로 활용하는 추세였지만 Java 7에서 try-with-resources 를 사용할 수 있음
+- try-finally에서는 finally 에서 예외가 발생하면 기존 예외를 잡아먹는 문제가 있음
+- AutoCloseable 을 통한 try-with-resources 구현은 try의 예외 부분을 잡아먹지 않는다
+  - 거기다 close에서 예외가 발생하면 suppressed 키워드도 같이 나와 close의 예외 유무를 확인할 수 있음
