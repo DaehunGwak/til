@@ -158,6 +158,9 @@ module.exports = {
             "books/cleancode/02",
             "books/cleancode/03",
             "books/cleancode/04",
+            "books/cleancode/07",
+            "books/cleancode/08",
+            "books/cleancode/09",
           ]
         }
       ]
