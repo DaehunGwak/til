@@ -216,6 +216,105 @@ public Stack clone() {
 
 ### clone 핵심 정리
 
-- 복제 기능은 새성자와 팩터리를 이용하는게 최고
+- 복제 기능은 생성자와 팩터리를 이용하는게 최고
 - 배열은 clone 메서드 방식이 유일하게 잘만듦
 - 부모 클래스가 Cloneable 구현체라면 어쩔 수 없이 clone 재정의
+
+## Item 14. Comparable을 구현할지 고려하라
+
+- Compareable 인터페이스의 compareTo 는 Object의 메서드가 아니지만 equals의 비슷한 부분이 많음
+- equals와 다른 부분 두가지
+  - 순서 비교 가능
+  - 제네릭
+- compareTo 구현하면 제네릭과 컬렉션의 힘을 가질 수 있음
+
+### compareTo 메서드의 일반 규약
+
+> equals와 비슷한 부분이 많음
+
+- 해당 객체와 주어진 객체의 순서를 비교한다 (A.compareTo(B))
+  - A < B 라면 음의 정수
+  - A == B 라면 0
+  - A > B 라면 양의 정수
+- 비교할 수 없는 타입이면 `ClassCastException` 던짐
+  - 보통 다른 타입의 객체이면 해당 예외를 던짐
+- 반사성, 대칭성, 추이성이 보장되야 함
+- `(x.compareTo(y) == 0) == (x.equals(y))`
+  - compareTo 메서드로 수행한 동치성 테스트는 equals와 같아야 함
+
+:::note
+compareTo 규약을 지키지 못하면 비교를 활용하는 클래스(컬렉션) 과 어울리지 못함
+
+예시
+
+- 정렬된 컬렉션인 TreeSet, TreeMap
+- 검색, 정렬 알고리즘을 활용하는 유틸 클래스 Collections, Arrays
+:::
+
+### 주의사항도 equals와 비슷함
+
+- 필드 추가시 compareTo 에 반영할지 고려
+  - 물론 반영한다면 OCP 위배..
+  - 우회법으로 equals와 마찬가지로 해당 클래스를 레퍼런스 인스턴스로 가지는 Wrapper 클래스를 만들고 확장한다.
+
+### 작성요령
+
+> equals와 비슷하지만 차이점도 있음
+
+- compareTo 는 제네릭이기 때문에 컴파일 타임에 타입이 정해짐
+  - 인수 타입을 확인하고 변환할 필요가 없음
+- compareTo 작성 중 필드들을 비교하려면 다음과 같다
+  - Compareable이 구현된 참조 필드는 해당 객체는 compareTo를 활용한다
+  - 그렇지 않으면, Comparator를 이용한다
+    - primitive 타입은 wrapper 클래스의 `.compare` 를 이용한다
+
+### compareTo 예시
+
+comparator를 이용한 compareTo 구현
+
+```java
+public final class CaseInsensitiveString implements Comparable<CaseInsensitiveString> {
+
+    public int compareTo(CaseInsensitiveString cis) {
+        return String.CASE_INSENSITVE_ORDER.compare(s, cis.s);
+    }
+
+    ...
+}
+```
+
+wrapper 클래스의 `.compare` 이용 예시
+
+```java
+public int compareTo(PhoneNumber pn) {
+    int result = Short.compare(areaCode, pn.areaCode);
+    if (result == 0) {
+        result = Short.compare(prefix, pn.prefix);
+        if (result == 0)
+            result = Short.compare(lineNum, pn.lineNum);
+    }
+    return result;
+}
+```
+
+Java 8, 메서드 체이닝을 활용한 Comparator 구현 및 활용
+
+- 성능저하가 약 10%(?) 정도 됨
+- 객체 참조용 비교자 생성 메서드도 있음
+
+```java
+private static final Comparator<PhoneNumber> COMPARATOR =
+        comparingInt((PhoneNumber) pn) -> pn.areaCode)
+            .thenComparingInt(pn -> pn.prefix)
+            .thenComparingInt(pn -> pn.lineNum);
+
+public int compareTo(PhoneNumber pn) {
+    return COMPARATOR.compare(this, pn);
+}
+```
+
+### Compareable 핵심 정리
+
+- 순서를 고려해하는 값 클래스를 작성한다면 Comparable 인터페이스를 구현한다
+- 필드 값을 비교할땐 `<`, `>` 와 같은 것을 이용하지 않는다
+- Wrapper 클래스의 compare 메서드나 Comparator 를 활용한다.

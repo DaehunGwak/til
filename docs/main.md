@@ -1,6 +1,6 @@
 ---
 id: main
-title: Orid's TIL 📚
+title: Ordi's TIL 📚
 sidebar_label: 메인
 slug: /
 ---

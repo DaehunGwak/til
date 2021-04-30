@@ -38,6 +38,7 @@ module.exports = {
           items: [
             "spring/jpa/00",
             "spring/jpa/01",
+            "spring/jpa/02",
           ]
         },
         {
@@ -161,6 +162,8 @@ module.exports = {
             "books/cleancode/07",
             "books/cleancode/08",
             "books/cleancode/09",
+            "books/cleancode/10",
+            "books/cleancode/12",
           ]
         }
       ]
