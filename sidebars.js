@@ -80,6 +80,7 @@ module.exports = {
             "java/effective-java/01-intro",
             "java/effective-java/02-destroy-create-object",
             "java/effective-java/03-common-method",
+            "java/effective-java/04-class-interface",
           ]
         },
         {
