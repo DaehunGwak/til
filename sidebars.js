@@ -40,6 +40,7 @@ module.exports = {
             "spring/jpa/01",
             "spring/jpa/02",
             "spring/jpa/03",
+            "spring/jpa/04",
           ]
         },
         {
@@ -82,6 +83,7 @@ module.exports = {
             "java/effective-java/02-destroy-create-object",
             "java/effective-java/03-common-method",
             "java/effective-java/04-class-interface",
+            "java/effective-java/05-generic",
           ]
         },
         {
