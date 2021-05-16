@@ -88,6 +88,23 @@ module.exports = {
         },
         {
           type: "category",
+          label: "클린코드",
+          items: [
+            "java/cleancode/01",
+            "java/cleancode/02",
+            "java/cleancode/03",
+            "java/cleancode/04",
+            "java/cleancode/07",
+            "java/cleancode/08",
+            "java/cleancode/09",
+            "java/cleancode/10",
+            "java/cleancode/12",
+            "java/cleancode/16",
+            "java/cleancode/17",
+          ]
+        },
+        {
+          type: "category",
           label: "자바의 정석",
           items: [
             "java/essence-of-java/01-05",
@@ -155,23 +172,6 @@ module.exports = {
         "books/clean-coder",
         "books/python-algo-interview",
         "books/practices-of-the-python-pro",
-        {
-          type: "category",
-          label: "클린코드",
-          items: [
-            "books/cleancode/01",
-            "books/cleancode/02",
-            "books/cleancode/03",
-            "books/cleancode/04",
-            "books/cleancode/07",
-            "books/cleancode/08",
-            "books/cleancode/09",
-            "books/cleancode/10",
-            "books/cleancode/12",
-            "books/cleancode/16",
-            "books/cleancode/17",
-          ]
-        }
       ]
     },    
     {

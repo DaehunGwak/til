@@ -12,6 +12,8 @@ generic.add(new Hello("Hello Generic"));
 
 ## Item 26. 로(raw) 타입은 사용하지 말라
 
+> [example code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item26)
+
 - 제네릭 타입 (generic type): `List<E>`
 - 매개변수화 타입 (parameterized type): `List<String>`
 - 로 타입(raw type): `List`
@@ -53,6 +55,8 @@ if (o instanceof Set) {
 
 ## Item 27. 비검사 경고를 제거하라
 
+> [example code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item27)
+
 - 비검사(uncheck) 경고
 - javac `-Xlint:unchecked` 옵션을 통해 확인 가능
   - intelliJ가 보통 자동으로 경고해줌
@@ -60,4 +64,68 @@ if (o instanceof Set) {
   - 경고를 제거할 수 없는데 타입 안전하다고 확신할 수 있으면 `@SuppressWarnings("unchecked")` 로 숨길 순 있음
   - 하지만 왠만하면 없애자
 
+## Item 28. 배열보다는 리스트를 사용하라
 
+> [example code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item28)
+
+### 배열과 리스트 차이
+
+#### 배열은 공변, 제네릭은 불공변
+
+- 배열은 공변 (covarient)
+  - 즉 하위 타입의 배열 선언 가능
+  - [array: covariant example code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item28/ArrayCovariantTest.java)
+  - `Object[] arr = new Long[1];` 가능
+- 제네릭은 불공변 (invarient)
+  - 즉 `List<Object>`와 `List<Long>` 는 하위 타입 관계가 아니라 그 어떤 관계도 없음 
+  - `List<Object> ol = new ArrayList<Long>();` 시 컴파일 에러
+
+#### 배열은 실체화가 됨
+
+- 배열은 런타임에 데이터 할당에 대한 타입을 인지하고 확인
+- 제네릭은 컴파일 타임에만 검사하고, 런타임 코드엔 타입이 소거되어 있음
+  - 고로 제네릭 배열 (`new List<String>[]`) 는 만들지 못함
+  - 런타임시 타입이 소거되어, 타입 안정성을 보장할 수 없음
+
+### 배열보다 리스트 정리
+
+- 배열은 공변이고 실체화됨 -> 런타임에서 타입 안정성 보장
+- 제네릭은 불공변이고 타입정보가 소거됨 -> 컴파일 시 타입 안정성 보장
+- 배열과 리스트를 섞어쓰다 곤란해지면 배열을 리스트로 전환해보자
+
+## Item 29. 이왕이면 제네릭 타입으로 만들라
+
+제네릭 타입을 새로 만드는 일은 조금 어려움, 이를 실습하며 배워보자
+
+> [example code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item29)
+
+### 배열을 사용하는 코드를 제네릭으로 만들 때 해결방법
+
+E와 같은 실체화 불가 타입으로는 배열을 만들 수 없음, 따라서 아래의 해결책으로 해결 가능
+
+#### 1. 제네릭 배열 생성을 금지하는 제약을 대놓고 우회하기
+
+- 스택 예제에선 private 인 elements가 push를 통해 E 타입 말고는 다른것이 들어올 수 있는 경로가 없음을 보장함
+- 따라서 `elements = (E[]) new Object[DEFAULT_INITIAL_CAPACITY];` 로 사용 가능
+- 장점
+  - 코드가 후자에 비해 깔끔
+  - 형 변한을 생성자에서 한번만 함
+- 단점
+  - 런타임 타입과 컴파일타임 타입이 다른 힙 오염 (item 32) 일으킴
+
+#### 2. elements 를 E[] 타입에서 Object[] 타입으로 변환
+
+- GenericStack2 예제 참고
+- 장점
+  - 힙오염 염려가 없음
+- 단점
+  - 형변환을 pop 시 매번 함
+
+> 위의 예제게 Item 28과 조금 모순되어 보일 수 있으나 JDK 컬렉션 구현체들 입장에선 List는
+> 기본 타입이 아니므로 배열을 사용하여 구현해야하는 상황임
+
+### 제네릭 정리
+
+- 직접 형변환 보단 제네릭 타입이 더 안전하고 쓰기 편함
+- 새로운 타입 설계시 형변환 없이 사용할 수 있도록
+  - 그러면 자주 제네릭을 사용하게 됨
