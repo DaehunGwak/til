@@ -1,6 +1,6 @@
 ---
 id: 05-generic
-title: 05. 클래스와 인터페이스
+title: 05. 제네릭
 ---
 
 ```java
@@ -129,3 +129,58 @@ E와 같은 실체화 불가 타입으로는 배열을 만들 수 없음, 따라
 - 직접 형변환 보단 제네릭 타입이 더 안전하고 쓰기 편함
 - 새로운 타입 설계시 형변환 없이 사용할 수 있도록
   - 그러면 자주 제네릭을 사용하게 됨
+
+## Item 30. 이왕이면 제네릭 메서드로 만들라
+
+### 제네릭 메서드
+
+> [union method example code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item30/UnionTest.java)
+
+- 제네릭 메서드는 타입 일관적인 함수를 만들 수 있음
+
+### 제네릭 싱글턴 팩터리
+
+> [identity function(항등 함수) class example](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item30/GenericSingletonFactory.java)
+
+- 각 타입에 대한 팩터리 메서드를 작성하지 않아도 됨
+
+### 재귀적 한정 타입
+
+- 재귀적 타입 한정 (Recursive Type Bound)
+  - 한정을 지은 타입 내에서만 해당 타입을 허용한다는 의미
+- [재귀적 타입 한정을 통해 collection max 연산 구현](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item30/ComparableTest.java)
+
+### 제네릭 메서드 정리
+
+- 로 타입을 사용하는 메서드보다 제네릭 메서드가 더 안전하며 사용하기도 쉬움
+- 형변환 해야하는 메서드가 발생하면 제네릭 메서드로 만들자
+
+## Item 31. 한정적 와일드카드를 사용해 API 유연성을 높여라
+
+- 매개 변수화 타입은 불공변임 (invarient)
+  - `List<String>` 은 `List<Object>` 의 하위 타입이 아님
+- 그런데 이런 매개 변수화 타입의 불공변 특성을 넘어 유연성을 제공해야 한다면?
+
+### 한정적 와일드 카드를 사용한 유연성 극대화
+
+- 유연성 극대화를 위해선 원소의 생산자(producer)나 소비자(comsumer) 입력 매개변수에 와일드 카드 타입을 사용하라
+- [WildCardStack 예시 코드](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item31/stack)
+- 입력 매개변수가 생산자, 소비자 둘다 역할을 한다면
+  - 이 경우엔 와일드 카드가 무소용..
+- PECS: producer-extends, consumer-super 전략 기억
+- 반환 타입엔 와일드 카드를 사용 X
+
+### 파라미터로 타입 매개변수 vs 와일드 카드
+
+- 둘 중 어느 것을 사용해도 괜찮을 때가 많음
+- public API 라면 와일드 카드로 범용성 제공
+  - [swap 예시 코드](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item31/swap)
+  - 룰: 메서드 선언에 타입 매개변수가 한 번만 나오면 와일드 카드로 대체
+  - 예제에서는 와일드 카드 대신 타입 매개변수로 해도 범용성을 제공할 것 같지만
+    - 클래스가 제네릭으로 선언되어 있다면 해당 타입을 따라 갈 수 있으므로 범용성 측면에선 와일드 카드가 더 낫다
+
+### 한정적 와일드 카드 정리
+
+- 와일드 카드 타입을 적용하면 API가 훨씬 유연해진다
+- PECS: producer-extends, consumer-super 전략 기억
+  - Comparalbe, Comparator 모두 consumer
