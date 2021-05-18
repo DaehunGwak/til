@@ -184,3 +184,55 @@ E와 같은 실체화 불가 타입으로는 배열을 만들 수 없음, 따라
 - 와일드 카드 타입을 적용하면 API가 훨씬 유연해진다
 - PECS: producer-extends, consumer-super 전략 기억
   - Comparalbe, Comparator 모두 consumer
+
+## Item 32. 제네릭과 가변인수를 함께 쓸 때는 신중하라
+
+- 가변 인수 메서드를 호출하면 가변 인수를 담기 위한 배열이 자동으로 하나 만들어짐
+  - 클라이언트에 에게 해당 배열이 노출됨
+- 제네릭 varargs 배열 매개변수에 값을 저장하는 것은 안전하지 않다
+  - [dangerous code](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item32/VarargsMain.java)
+  - 컴파일러에서 제한하지 않고 경고로 그치는 이유는 실무에서 유용
+  - ex) `Arrays.asList(T... a)`, `List.of(E... elements)`
+  - 타입 안정성이 보장된다면 경고를 없애기 위해 `@SafeVarargs` 를 사용할 수 있음
+
+### 메서드가 가변인수를 쓰는데 타입 안정성을 보장한다는 증거
+
+1. 해당 가변인수 배열에 아무것도 안저장함
+1. 참조가 밖으로 노출안됨
+
+제네릭 varargs 매개변수 배열에 다른 메서드가 접근하도록 허용하면 안전하지 않음
+
+### 제네릭과 가변인수 정리
+
+- 둘의 궁합은 👎
+- 제네릭 varargs 매개변수는 타입 안정성은 보장 못하지만 허용됨
+- 제네릭 varargs 매개변수 사용하여 개발 시 타입 안정성을 체크한 후 `@SafeVarargs` 를 달자
+
+## Item 33. 타입 안전 이종 컨테이너를 고려하라
+
+- 컬렉션에서도 제네릭을 많이 쓰지만, `ThreadLocal<T>` 과 같은 단일 원소 컨테이너에도 흔히 쓰임
+- 매개 변수화 대상은 원소가 아닌 컨테이너 자신
+  - 매개변수 타입이 제한됨
+
+### 타입 안전 이종 컨테이너
+
+> [Favorites 구현 예제](https://github.com/DaehunGwak/study-java/tree/main/effectivejava/src/ch05/item32/Favorites.java)
+
+- type safe heterogeneous container pattern
+- `Map<K, V>` 와 같은 컨테이너는 타입을 두가지 밖에 못씀
+- 더 유연한 타입을 지니면서 매개변수화 한 키의 타입과 값의 타입이 일치함을 보장이 필요할때 사용 가능
+
+#### 한계점
+
+- 로 타입을 put 할시 타입 안정성이 깨짐
+  - 물론 비검사 경고가 뜨니 체크 가능
+  - 동적 타입 캐스팅으로 타입 불변성 체크 가능
+- 두번째 제약은 실체화 불가 타입에서는 사용할 수 없음
+  - `List<String>.class` 와 `List<Object>.class` 는 `List.class` 임
+  - super type token으로 해결하려는 시도는 있었음, 한계는 존재
+
+### 타입 안전 이종 컨테이너 정리
+
+- 키를 타입(클래스) 매개변수로 바꾸면 여러 타입을 키로 사용할 수 있는 타입 안전 이종 컨테이너를 만들 수 있음
+- 이때 사용하는 클래스 객체 키를 타입 토큰이라 함
+- DB는 DatabaseRow 타입에 `Column<T>`를 사용할 수 있음
