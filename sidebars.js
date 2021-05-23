@@ -86,6 +86,7 @@ module.exports = {
             "java/effective-java/03-common-method",
             "java/effective-java/04-class-interface",
             "java/effective-java/05-generic",
+            "java/effective-java/06-enum-annotation",
           ]
         },
         {
