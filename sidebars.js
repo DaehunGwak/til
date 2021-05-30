@@ -140,6 +140,22 @@ module.exports = {
     },
     {
       type: "category",
+      label: "책",
+      items: [
+        {
+          type: "category",
+          label: "리팩터링 2판",
+          items: [
+            "books/refactoring/02"
+          ]
+        },
+        "books/clean-coder",
+        "books/python-algo-interview",
+        "books/practices-of-the-python-pro",
+      ]
+    },
+    {
+      type: "category",
       label: "MySQL",
       items: [
         "mysql/docker-mysql",
@@ -168,15 +184,6 @@ module.exports = {
       label: "git",
       items: ["git/config-account"],
     },
-    {
-      type: "category",
-      label: "책",
-      items: [
-        "books/clean-coder",
-        "books/python-algo-interview",
-        "books/practices-of-the-python-pro",
-      ]
-    },    
     {
       type: "category",
       label: "Docusaurus",
