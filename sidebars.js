@@ -43,6 +43,8 @@ module.exports = {
             "spring/jpa/04",
             "spring/jpa/05",
             "spring/jpa/06",
+            "spring/jpa/09",
+            "spring/jpa/10",
           ]
         },
         {
