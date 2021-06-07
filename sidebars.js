@@ -81,6 +81,14 @@ module.exports = {
       items: [
         {
           type: "category",
+          label: "모던 자바 인 액션",
+          items: [
+            "java/modern-java-in-action/04",
+            "java/modern-java-in-action/05",
+          ]
+        },
+        {
+          type: "category",
           label: "이펙티브 자바",
           items: [
             "java/effective-java/01-intro",
@@ -163,6 +171,18 @@ module.exports = {
       items: [
         "mysql/docker-mysql",
       ],
+    },
+    {
+      type: "category",
+      label: "MongoDB",
+      items: [
+        {
+          type: "category",
+          label: "MongoDB in Action",
+          items: [],
+        },
+        "mongodb/docker-mongodb",
+      ]
     },
     {
       type: "category",
