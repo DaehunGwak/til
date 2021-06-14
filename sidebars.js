@@ -85,6 +85,8 @@ module.exports = {
           items: [
             "java/modern-java-in-action/04",
             "java/modern-java-in-action/05",
+            "java/modern-java-in-action/06",
+            "java/modern-java-in-action/07",
           ]
         },
         {
