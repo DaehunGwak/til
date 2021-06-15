@@ -181,7 +181,10 @@ module.exports = {
         {
           type: "category",
           label: "MongoDB in Action",
-          items: [],
+          items: [
+            "mongodb/mongodb-in-action/04",
+            "mongodb/mongodb-in-action/05",
+          ],
         },
         "mongodb/docker-mongodb",
       ]
