@@ -30,6 +30,14 @@ module.exports = {
     },
     {
       type: "category",
+      label: "실전! 스프링 부트 JPA 활용 1",
+      items: [
+        "spring/practical-boot-jpa-1/00-intro",
+        "spring/practical-boot-jpa-1/01-setting",
+      ],
+    },
+    {
+      type: "category",
       label: "Spring",
       items: [
         {
@@ -45,15 +53,8 @@ module.exports = {
             "spring/jpa/06",
             "spring/jpa/09",
             "spring/jpa/10",
+            "spring/jpa/11",
           ]
-        },
-        {
-          type: "category",
-          label: "실전! 스프링 부트 JPA 활용 1",
-          items: [
-            "spring/practical-boot-jpa-1/00-intro",
-            "spring/practical-boot-jpa-1/01-setting",
-          ],
         },
         {
           type: "category",
