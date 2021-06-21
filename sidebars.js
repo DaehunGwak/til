@@ -30,16 +30,16 @@ module.exports = {
     },
     {
       type: "category",
-      label: "실전! 스프링 부트 JPA 활용 1",
-      items: [
-        "spring/practical-boot-jpa-1/00-intro",
-        "spring/practical-boot-jpa-1/01-setting",
-      ],
-    },
-    {
-      type: "category",
       label: "Spring",
       items: [
+        {
+          type: "category",
+          label: "실전! 스프링 부트 JPA 활용 1",
+          items: [
+            "spring/practical-boot-jpa-1/00-intro",
+            "spring/practical-boot-jpa-1/01-setting",
+          ],
+        },
         {
           type: "category",
           label: "자바 ORM 표준 JPA 프로그래밍",
@@ -88,6 +88,8 @@ module.exports = {
             "java/modern-java-in-action/05",
             "java/modern-java-in-action/06",
             "java/modern-java-in-action/07",
+            "java/modern-java-in-action/08",
+            "java/modern-java-in-action/09",
           ]
         },
         {
