@@ -34,37 +34,11 @@ title: 01. 프로젝트 세팅
   - h2 db client
   - connection pool: HikariCP (spring default)
   - WEB (thymeleaf)
-  - 로깅: slf4j & logback
+  - 로깅: slf4j (인터페이스) & logback (구현체)
   - test
-
-### main
-
+    - junit, mockito, assertj
 - `build.gradle` 에서 확인 가능
 - `./gradlew dependencies` 로 의존관계를 커맨드 라인에서 확인가능
-- 아니면 intellij 오른쪽에 붙어있는 바에 gradle 이 있음
-- spring-boot-stater-web
-  - spring-webmvc
-  - spring-boot-starter-tomcat (서버를 띄어주는 역할)
-- spring-boot-starter-data-jpa
-  - spring-boot-starter-aop
-    - spring-boot-starter-logging
-      - logback 을 많이 씀
-        - slf4j 는 인터페이스의 모음
-          - 여기에 logback, log4j 를 볼 수 있음
-  - springboot-stater-jdbc
-    - HikariCP
-      - 커넥션 풀 관리
-  - hibernate-core
-  - spring-boot-jpa
-- thymeleaf
-- spring-boot-core는 spring-boot-stater-*를 쓴다면 왠만하면 다 들어있음
-
-### test
-
-- junit
-- mockito
-- assertj
-
 
 ## View 환경설정
 
@@ -86,3 +60,43 @@ title: 01. 프로젝트 세팅
     - log 에 `[  restartedMain]` 가 보이면 성공
     - html 수정 후
       - Build > Recompile '*.html' 를 누르면 spring이 devtools 기능을 이용하여 리로드함
+
+## H2 데이터베이스 설치
+
+- 혹시 오류나면 gradle h2 패키지 버전과 설치 버전이 동일한지 확인
+- 처음 `./bin/h2.sh` 을 실행하면 웹 콘솔이 뜸
+- 웹 콘솔에서 jdbc url 을 `jdbc:h2:~/jpashop` 로 설정하여 jpashop db 파일 생성
+- 그 다음 부턴 tcp 커넥션 `jdbc:h2:tcp://localhost/~/jpashop` 으로 연결
+
+
+## JPA와 DB 설정, 동작확인
+
+- 설정파일은 `resources/application.yml` 파일로 설정
+
+```yml title="resources/application.yml
+spring:
+  ...
+
+  jpa:
+    ...
+    properties:
+      hibernate:
+        show_sql: true # System.out
+        format_sql: true
+
+logging.level:
+    org.hibernate.SQL: debug # logger (show_sql 보다 logger를 사용하는 것을 권장)
+```
+
+- TC 에 붙은 어노테이션
+  - `@Transactional`: TC에 붙으면 실행 이후 rollback 함
+  - `@Rollback(false)`: 롤백 무시는 이렇게 가능
+
+```sh title="jar 로 실행 해보기"
+./gradlew clean build
+cd build/libs
+java -jar jpashop-0.0.1-SNAPSHOT.jar
+```
+
+- spring boot는 설정이 자동화되어 있음
+- 패키지를 추가할 땐 성능 테스트 꼭 해보기
