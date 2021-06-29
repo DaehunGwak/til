@@ -103,6 +103,7 @@ module.exports = {
             "java/effective-java/05-generic",
             "java/effective-java/06-enum-annotation",
             "java/effective-java/07-lambda-stream",
+            "java/effective-java/10-exception",
           ]
         },
         {
