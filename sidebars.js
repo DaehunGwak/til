@@ -188,6 +188,7 @@ module.exports = {
             "mongodb/mongodb-in-action/04",
             "mongodb/mongodb-in-action/05",
             "mongodb/mongodb-in-action/07",
+            "mongodb/mongodb-in-action/08",
           ],
         },
         "mongodb/docker-mongodb",
