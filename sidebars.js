@@ -90,6 +90,8 @@ module.exports = {
             "java/modern-java-in-action/07",
             "java/modern-java-in-action/08",
             "java/modern-java-in-action/09",
+            "java/modern-java-in-action/12",
+            "java/modern-java-in-action/13",
           ]
         },
         {
