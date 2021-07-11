@@ -92,6 +92,7 @@ module.exports = {
             "java/modern-java-in-action/09",
             "java/modern-java-in-action/12",
             "java/modern-java-in-action/13",
+            "java/modern-java-in-action/14",
           ]
         },
         {
@@ -192,6 +193,7 @@ module.exports = {
             "mongodb/mongodb-in-action/05",
             "mongodb/mongodb-in-action/07",
             "mongodb/mongodb-in-action/08",
+            "mongodb/mongodb-in-action/10",
           ],
         },
         "mongodb/docker-mongodb",
