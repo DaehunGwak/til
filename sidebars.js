@@ -17,10 +17,10 @@ module.exports = {
             "web/javascript/events",
             "web/javascript/debounce-throttle",
           ],
-          "htmlcss-bugless-101": [
-            "web/htmlcss/01-intro",
-            "web/htmlcss/02-tags-basic",
-          ],
+          // "htmlcss-bugless-101": [
+          //   "web/htmlcss/01-intro",
+          //   "web/htmlcss/02-tags-basic",
+          // ],
           dom: [
             "web/dom/document-fragment",
           ],
@@ -107,6 +107,7 @@ module.exports = {
             "java/effective-java/06-enum-annotation",
             "java/effective-java/07-lambda-stream",
             "java/effective-java/10-exception",
+            "java/effective-java/12-serialization"
           ]
         },
         {
@@ -151,13 +152,13 @@ module.exports = {
         "java/mac-tomcat",
       ],
     },
-    {
-      type: "category",
-      label: "OOP",
-      items: [
-        "oop/solid",
-      ]
-    },
+    // {
+    //   type: "category",
+    //   label: "OOP",
+    //   items: [
+    //     "oop/solid",
+    //   ]
+    // },
     {
       type: "category",
       label: "책",
@@ -194,22 +195,23 @@ module.exports = {
             "mongodb/mongodb-in-action/07",
             "mongodb/mongodb-in-action/08",
             "mongodb/mongodb-in-action/10",
+            "mongodb/mongodb-in-action/11",
           ],
         },
         "mongodb/docker-mongodb",
       ]
     },
-    {
-      type: "category",
-      label: "Vue",
-      items: [
-        {
-          "Vue Mastery": [
-            "vue/vue-mastery/vue3-ts"
-          ]
-        }
-      ],
-    },
+    // {
+    //   type: "category",
+    //   label: "Vue",
+    //   items: [
+    //     {
+    //       "Vue Mastery": [
+    //         "vue/vue-mastery/vue3-ts"
+    //       ]
+    //     }
+    //   ],
+    // },
     {
       type: "category",
       label: "Webpack",
