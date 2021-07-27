@@ -93,6 +93,7 @@ module.exports = {
             "java/modern-java-in-action/12",
             "java/modern-java-in-action/13",
             "java/modern-java-in-action/14",
+            "java/modern-java-in-action/17",
           ]
         },
         {
