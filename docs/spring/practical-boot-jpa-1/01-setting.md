@@ -3,8 +3,8 @@ id: 01-setting
 title: 01. 프로젝트 세팅
 ---
 
-
-## 프로젝트 생성하
+> 다 따라해보기
+## 프로젝트 생성과정
 
 - [start.spring.io](https://start.spring.io/) 에서 프로젝트 생성 가능
 - 추가할 Dependencies
@@ -14,7 +14,11 @@ title: 01. 프로젝트 세팅
   - lombok
   - thymeleaf
 
+### gradle 구성
 
+- plugins: spring 관련 플러그인 들이 dependencies의 버전을 알아서 관리해줌
+- dependencies: 라이브러리 들
+  - 관련 있는 의존 관계 라이브러리를 다같이 불러 옴
 ### lombok + intellij 세팅
 
 - intellij에서
@@ -22,44 +26,36 @@ title: 01. 프로젝트 세팅
     - 요즘은 기본적으로 번들되어 있음
   2. Preferecnes > Annotation Proccessors 검색 > Enable annotation processing 활성화
 
-
 ## 라이브러리 살펴보기
 
-- 핵심
-  - spring mvc
-  - spring orm
-  - JPA, hibernate
-  - spring data jpa
-- 기타
-  - h2 db client
-  - connection pool: HikariCP (spring default)
-  - WEB (thymeleaf)
-  - 로깅: slf4j (인터페이스) & logback (구현체)
-  - test
-    - junit, mockito, assertj
 - `build.gradle` 에서 확인 가능
+- 핵심
+  - spring web
+    - mvc, tomcat
+    - core
+  - spring data jpa
+    - db connection pool: HikariCP (spring-boot-start-jdbc default)
+    - JPA, hibernate (JPA 구현체)
+  - 로깅: slf4j (인터페이스) & logback (구현체)
+  - WEB (thymeleaf)
+  - 테스트: junit, mockito, assertj
 - `./gradlew dependencies` 로 의존관계를 커맨드 라인에서 확인가능
 
 ## View 환경설정
 
 - thymeleaf 템플릿 엔진을 사용
   - 장점
-    - Natural templates
-      - 마크업을 깨지 않고 그대로 씀
+    - Natural templates: 마크업을 깨지 않고 그대로 씀 (웹 브라우저에서 그냥 열림)
   - 단점
     - 성능 이슈도 조금 있음
     - 매뉴얼을 조금 봐야함..
-
-> spring 공식 사이트에 guide 에 getting-started 해보면 좋음
-
 - 세팅은 dependencies 에 있기만 하면 세팅 완료
-- 문제
-  - 서버 리스타트를 계속 반복적으로 하면 짜증날 수 있음
-  - `spring-boot-devtools` 디펜던시를 추가하면 좋은 개발 도구들을 제공해줌
-    - 대표적으로 리스타트
-    - log 에 `[  restartedMain]` 가 보이면 성공
-    - html 수정 후
-      - Build > Recompile '*.html' 를 누르면 spring이 devtools 기능을 이용하여 리로드함
+- 문제: 서버 리스타트를 계속 반복적으로 하면 짜증날 수 있음
+- 해결: `spring-boot-devtools` 디펜던시를 추가하면 좋은 개발 도구들을 제공해줌
+  - 대표적으로 리스타트
+  - log 에 `[  restartedMain]` 가 보이면 성공
+  - html 수정 후
+    - Build > Recompile '*.html' 를 누르면 spring이 devtools 기능을 이용하여 리로드함
 
 ## H2 데이터베이스 설치
 
