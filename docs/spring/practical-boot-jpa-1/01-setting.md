@@ -59,8 +59,11 @@ title: 01. 프로젝트 세팅
 
 ## H2 데이터베이스 설치
 
+
+- h2?
+  - 테스트용 인 메모리 관계형 디비
 - 혹시 오류나면 gradle h2 패키지 버전과 설치 버전이 동일한지 확인
-- 처음 `./bin/h2.sh` 을 실행하면 웹 콘솔이 뜸
+- 처음 `./bin/h2.sh` 을 실행하면 디비가 실행되고, 웹 콘솔이 뜸
 - 웹 콘솔에서 jdbc url 을 `jdbc:h2:~/jpashop` 로 설정하여 jpashop db 파일 생성
 - 그 다음 부턴 tcp 커넥션 `jdbc:h2:tcp://localhost/~/jpashop` 으로 연결
 
@@ -69,10 +72,9 @@ title: 01. 프로젝트 세팅
 
 - 설정파일은 `resources/application.yml` 파일로 설정
 
-```yml title="resources/application.yml
+```yml title="resources/application.yml"
 spring:
   ...
-
   jpa:
     ...
     properties:
@@ -84,6 +86,7 @@ logging.level:
     org.hibernate.SQL: debug # logger (show_sql 보다 logger를 사용하는 것을 권장)
 ```
 
+- h2 연결 url 작성 시, `MVCC` 세팅은 최신 버전에서 사라짐
 - TC 에 붙은 어노테이션
   - `@Transactional`: TC에 붙으면 실행 이후 rollback 함
   - `@Rollback(false)`: 롤백 무시는 이렇게 가능
