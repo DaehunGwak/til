@@ -4,6 +4,7 @@ title: 01. 프로젝트 세팅
 ---
 
 > 다 따라해보기
+
 ## 프로젝트 생성과정
 
 - [start.spring.io](https://start.spring.io/) 에서 프로젝트 생성 가능
@@ -19,6 +20,7 @@ title: 01. 프로젝트 세팅
 - plugins: spring 관련 플러그인 들이 dependencies의 버전을 알아서 관리해줌
 - dependencies: 라이브러리 들
   - 관련 있는 의존 관계 라이브러리를 다같이 불러 옴
+
 ### lombok + intellij 세팅
 
 - intellij에서
@@ -59,14 +61,12 @@ title: 01. 프로젝트 세팅
 
 ## H2 데이터베이스 설치
 
-
 - h2?
   - 테스트용 인 메모리 관계형 디비
 - 혹시 오류나면 gradle h2 패키지 버전과 설치 버전이 동일한지 확인
 - 처음 `./bin/h2.sh` 을 실행하면 디비가 실행되고, 웹 콘솔이 뜸
 - 웹 콘솔에서 jdbc url 을 `jdbc:h2:~/jpashop` 로 설정하여 jpashop db 파일 생성
 - 그 다음 부턴 tcp 커넥션 `jdbc:h2:tcp://localhost/~/jpashop` 으로 연결
-
 
 ## JPA와 DB 설정, 동작확인
 
