@@ -39,6 +39,7 @@ module.exports = {
             "spring/practical-boot-jpa-1/00-intro",
             "spring/practical-boot-jpa-1/01-setting",
             "spring/practical-boot-jpa-1/02-domain",
+            "spring/practical-boot-jpa-1/03-app-design",
           ],
         },
         {
