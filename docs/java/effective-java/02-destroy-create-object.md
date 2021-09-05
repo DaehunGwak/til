@@ -307,7 +307,7 @@ public class Stack {
 - finalizer, cleaner 둘다 언제 제때 실행해야하는지 보장할 수 없음
 - AutoCloseable 를 구현 + try-with-resources 활용으로 자원 해제를 보장해줄 수 있음
 
-### 정리
+### 08 핵심정리
 
 - clenaer, finalizer는 안정망 역할 or 중요하지 않은 네이티브 자원 회수 용도로만 활용하자~
 - 물론 그냥 안쓰는게 최고
