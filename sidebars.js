@@ -170,6 +170,7 @@ module.exports = {
           type: "category",
           label: "리팩터링 2판",
           items: [
+            "books/refactoring/01",
             "books/refactoring/02"
           ]
         },
