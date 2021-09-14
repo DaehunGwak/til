@@ -34,6 +34,13 @@ module.exports = {
       items: [
         {
           type: "category",
+          label: "SpringRunner 101: 스프링 코어",
+          items: [
+            "spring/fastcampus/springrunner101/00",
+          ],
+        },
+        {
+          type: "category",
           label: "실전! 스프링 부트 JPA 활용 1",
           items: [
             "spring/practical-boot-jpa-1/00-intro",
