@@ -178,7 +178,9 @@ module.exports = {
           label: "리팩터링 2판",
           items: [
             "books/refactoring/01",
-            "books/refactoring/02"
+            "books/refactoring/02",
+            "books/refactoring/03",
+            "books/refactoring/04",
           ]
         },
         "books/clean-coder",
