@@ -5,43 +5,103 @@ title: 06. 열거 타입과 애너테이션
 
 ## Item 34. int 상수 대신 열거 타입을 사용하라
 
-```java title="상수 대신 열거 타입 사용하는 예시
-// int enum pattern
+```java title="정수 열거 패턴과 열거 타입"
+// 정수 열거 패턴
 public static final int APPLE_FUJI = 0;
 public static final int APPLE_PIPPIN = 1;
-public static final int APPLE_GRANNY_SMITH = 2;
 
-// enum type
-public enum Apple {
-  FUJI,
-  PIPPIN,
-  GRANNY_SMITH
+public static final int ORANGE_NAVEL = 0;
+public static final int ORANGE_TEMPLE = 1;
+
+// 열거 타입
+public enum Apple { FUJI, PIPPIN }
+public enum Orange { NAVEL, TEMPLE }
+```
+
+### 정수 열거 패턴의 단점
+
+- 다른 타입끼리 비교하더라도 컴파일러에서 경고 X (타입 안정성 X)
+  - `APPLE_PIPPIN == ORANGE_TEMPLE` 이렇게 해도 경고 X
+- 정수 상수는 문자열로 출력하기 까다로움
+
+### 열거 타입 특징
+
+- 상수 하나당 자신의 인스턴스를 하나씩 만들어 `public static final` 필드로 공개
+- 컴파일타임 타입 안정성 제공
+- 각 정의별로 `toString`을 가지고 있음
+- 일반 클래스처럼 메서드나 필드를 추가할 수도 있음
+- 상수별 메서드 구현도 가능
+
+```java title="상수별 메서드 구현 예시"
+public enum Operation {
+  PLUS {
+    public double apply(double x, double y) {
+      return x + y;
+    }
+  },
+  MINUS // 이하 생략
+  ;
+
+  public abstract double apply(double x, double y);
 }
 ```
 
-### 열거 타입 사용 특징
+### 전략 열거 타입 패턴 예시 코드
 
-- 상수 하나당 자신의 인스턴스르 하나씩 만들어 `public static final` 필드로 공개한다
-- 컴파일타임 타입 안정성 제공
-  - 매개 변수로 해당 열거 타입 사용하면, 다른 타입들이 입력되었을 때 컴파일 시 잡아줌
-- 네임스페이스 특징을 가짐
-- 각 정의별로 `toString`을 가지고 있음
-- 일반 클래스처럼 메서드나 필드를 추가할 수도 있음
-- 임의의 인터페이스를 구현할 수 있음
-  - 책에선 34-3 Planet 코드 예제를 들고 있음
-- **열거 타입 상수 각각을 특정 데이터와 연결지으로면 생성자에 데이터를 받아 인스턴스 필드에 저장하면 됨**
-- 상수별 메서드 구현(constnat-specific method implementation) 도 가능
-  - 주상 메서드를 만들고 각 상수별로 구현하면 됨
-  - 코드 34-5 Operation 코드 참고
-- 전략 열거 타입
-  - 열거타입 내 전략적으로 열거타입을 넣는 경우
-  - 코드 34-9 PayrollDay 코드에 PayType 을 inner enum type 으로 정의하는 예시가 있음
+#### 전략 열거 타입 패턴?
+
+다른 열거타입을 전략적으로 활용하여 중복된 구현을 다른 열거 타입에게 위임하는 것
+
+<details>
+
+<summary><code>전략 열거 타입 예시</code></summary>
+
+```java
+enum PayrollDay {
+    MONDAY(WEEKDAY), TUESDAY(WEEKDAY), WEDNESDAY(WEEKDAY),
+    THURSDAY(WEEKDAY), FRIDAY(WEEKDAY),
+    SATURDAY(WEEKEND), SUNDAY(WEEKEND);
+
+    private final PayType payType;
+
+    PayrollDay(PayType payType) { this.payType = payType }
+
+    int pay(int minutesWorked, int payRate) {
+        return payType.pay(minutesWorked, payRate);
+    }
+
+    // 전략 열거 타입
+    enum PayType {
+        WEEKDAY {
+            int ovrtimePay(int minsWorked, int payRate) {
+                return minsWorked <= MINS_PER_SHIFT ? 0 :
+                        (minsWorked - MINS_PER_SHIFT) * payRate / 2;
+            }
+        },
+        WEEKEND {
+            int ovrtimePay(int minsWorked, int payRate) {
+                return minsWorked * payRate / 2;
+            }
+        };
+
+        abstract int overtimePay(int mins, int payRate);
+        private static final int MINS_PER_SHIFT = 8 * 60;
+
+        int pay(int minsWorked, int payRate) {
+            int basePay = minsWorked * payRate;
+            return basePay + overtimePay(minsWorked, payRate);
+        }
+    }
+}
+```
+
+</details>
 
 ### 열거 타입 정리
 
-- 정수 상수보단 열거 타입
+- 정수 열거 패턴(상수)보단 열거 타입
 - 각 상수마다 특정 데이터와 연결을 지어야하거나 다르게 동작해야할 때는 명시적 생성자나 메서드를 사용
-- switch 보단 상수별 메서드 구현
+- switch 보단 상수별 메서드 구현 (케이스 바이 케이스)
 - 상수마다 같은 동작을 공유하는 패턴이 생긴다면 전략 열거 타입 패턴을 사용
 - 상수의 개수는 불변일 필요 없음
 
@@ -49,7 +109,7 @@ public enum Apple {
 
 - 열거 타입의 상수가 몇번째 위치하는지는 `ordinal()` 로 알 수 있음
 - 열거 타입 상수에 연결된 값은 `ordinal()` 메서드로 얻지말고 따로 인스턴스 필드를 추가해서 의존하자
-  - ordinal에 의존하게 되는 함수를 만들었을경우 상수 순서만 조금 바껴도 사이드 이펙트가 커질 수 있다
+  - ordinal에 의존하게 되는 함수를 만들었을경우 상수 순서가 바뀌는 순간 사이드 이펙트가 커질 수 있다
 
 ## Item 36. 비트 필드 대신 EnumSet 을 사용하라
 
@@ -72,10 +132,20 @@ text.applyStyles(EnumSet.of(Style.BOLD, style.ITALIC));
 
 ## Item 37. oridnal 인덱싱 대신 EnumMap을 사용하라
 
+```java title="EnumMap으로 열거타입 키를 활용하는 예시"
+// Plant.LifeCycle은 enum 타입
+Map<Plant.LifeCycle, Set<Plant>> plantsByLifeCycle = new EnumMap<>(Plant.LfieCycle.class);
+
+for (Plant.LifeCycle lc : Plant.LifeCycle.values())
+    plantsByLifeCycle.put(lc, new HashSet<>());
+
+for (Plant p : garden)
+    plantsByLifeCycle.get(p.lifeCycle).add(p)
+```
+
 - 배열의 인덱스를 얻기 위해 ordinal을 쓰는 것은 일반적으로 좋지 않으니, 대신 EnumMap을 사용하자
   - 다차원은 `EnumMap<..., EnumMap<...>>` 으로 표현하자
 - 열거 타입을 키로 사용하도록 설계한 `EnumMap`은 성능이 빠르다
-  - 코드 37-2 참고
 - 기본 스트림에선 고유한 맵 구현체를 사용했기 때문에 EnumMap부분을 따로 추가해줘야 한다
   - 코드 37-4 참고
 - 코드 2개를 비교했을때 스트림을 사용하는 쪽의 코드(37-4)는 key를 덜만들 수 있음
