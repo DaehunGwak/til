@@ -153,14 +153,15 @@ for (Plant p : garden)
 
 ## Item 38. 확장할 수 있는 열거 타입이 필요하면 인터페이스를 사용하라
 
+- 대부분의 상황에서 열거 타입 확장을 권하진 않음
 - 열거타입은 확장이 불가
-- 열거타입은 인터페이스의 구현체 역할이 가능하므로 이를 이용 가능
+- 열거타입은 인터페이스의 구현체 역할이 가능하므로 이를 이용
   - `Operation` 인터페이스를 구현한 `BasicOperation`, `ExtendedOperation` 열거 타입을 예시로 들고 있음
-- 열거타입을 인터페이스의 구현체 역할로 사용시 문제점
-  - 열거 타입 끼리 상속 불가
-  - 헬퍼를 추가하여 열거 타입 구현체 중복을 줄일 수 있을 것임
 
-```java title="테스트 코드 1. genecric method"
+<details>
+<summary><code>인터페이스 구현체인 열거 타입의 제네릭 메서드 예시</code></summary>
+
+```java
 public static void main(String[] args) {
     double x = Double.parseDouble(args[0]);
     double y = Double.parseDouble(args[1]);
@@ -174,6 +175,11 @@ private static <T extends Enum<T> & Operation> void test(
         System.out.printf("%f %s %f = %f%n", x, op, y, op.apply(x, y));
 }
 ```
+
+</details>
+
+<details>
+<summary><code>인터페이스 구현체인 열거 타입의 한정적 와일드 카드 예시</code></summary>
 
 ```java title="테스트 코드 2. 한정적 와일드 카드"
 public static void main(String[] args) {
@@ -189,6 +195,8 @@ private static void test(Collection<? extends Operation> opSet, double x, double
 }
 ```
 
+</details>
+
 ## Item 39. 명명 패턴보다 애너테이션을 사용하라
 
 - 명명패턴은 (JUnit3 예시)
@@ -196,20 +204,17 @@ private static void test(Collection<? extends Operation> opSet, double x, double
   - 기대한대로 동작 안할수도 있고
   - 매개변수로 전달할 마땅한 방법이 없음
 - 애너테이션은 이 모든문제를 해결해줌
-  - 애너테이션 구현을 예제로 할 예정
-  - 해당 챕터는 애너테이션을 구현하면서 애너테이션에 대한 이해를 올려주기 위함
 - 애너테이션을 적극 사용하자
   - 애너테이션으로 만들 수 있다면 명명패턴은 사용하지 말자
-  - 도구 (프레임워크, 라이브러리) 제작자를 제외하고는 일반 프로그래머가 애너테이션 만들일은 거의 없음
-    - 따라서 만들어진 애너테이션을 적극 활용하자
-    - 물론 만든는 법도 알아두면 좋음
+- 도구 (프레임워크, 라이브러리) 제작자를 제외하고는 일반 프로그래머가 애너테이션 만들일은 거의 없음
+  - 따라서 만들어진 애너테이션을 적극 활용하자
+  - 물론 만드는 법도 알아두면 좋음
 
 ## Item 40. @Override 애너테이션을 일관되게 사용하라
 
-- `@Override` 를 일관되게 사용하면 여러가지 악명 높은 버그를 예방해줌
+- `@Override` 를 일관되게 사용하면 여러가지 버그를 예방해줌
 - 상위 클래스의 메서드를 재정의하려는 모든 메서드에 `@Overrdie` 애너테이션을 달자
-  - 컴파일러가 바로 도와줄 것임
-  - 상위클래스의 추상 메서드를 재정의한 경우엔 안달아도 되지만 일관적으로 다는 것도 좋음
+  - 상위클래스의 추상 메서드를 재정의한 경우엔 안달아도 되지만 혼동 없이 일관적으로 달자
 
 ## Item 41. 정의하려는 것이 타입이라면 마커 인터페이스를 사용하라
 
@@ -222,6 +227,6 @@ private static void test(Collection<? extends Operation> opSet, double x, double
     - 인터페이스는 구현, 상속을 통해 정밀하게 지정 가능
 - 마커 애너테이션이 마커 인터페이스보다 나은 점
   - 거대한 애너테이션 시스템의 지원을 받는다
-- **마커로 등록할 대상에 매개변수를 받는 메서드를 작성할 일이 있으면 마커 인터페이스로!**
+- **마커로 등록할 대상의 객체가 매개변수로 활용된다면 마커 인터페이스로!**
 - `ElementType.TYPE` 으로 마커 애너테이션을 작성하고 있다면, 시간을 두고 마커 애너테이션과 인터페이스 중 어느게 옳은지 고민하자
 
