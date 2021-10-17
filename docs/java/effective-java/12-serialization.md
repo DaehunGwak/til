@@ -1,6 +1,6 @@
 ---
 id: 12-serialization
-title: 12. serialzation
+title: 12. serialization
 ---
 
 ## Item 85. 자바 직렬화의 대안을 찾으라
