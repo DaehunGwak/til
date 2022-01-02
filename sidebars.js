@@ -183,6 +183,9 @@ module.exports = {
             "kubernetes/easy-kubernetes/3-inside",
             "kubernetes/easy-kubernetes/4-problem",
             "kubernetes/easy-kubernetes/5-object",
+            "kubernetes/easy-kubernetes/6-tips",
+            "kubernetes/easy-kubernetes/7-outro",
+            "kubernetes/easy-kubernetes/999-more",
           ]
         }
       ]
