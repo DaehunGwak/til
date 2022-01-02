@@ -171,6 +171,24 @@ module.exports = {
     // },
     {
       type: "category",
+      label: "쿠버네티스",
+      items: [
+        {
+          type: "category",
+          label: "쉽게 시작하는 쿠버네티스",
+          items: [
+            "kubernetes/easy-kubernetes/0-intro",
+            "kubernetes/easy-kubernetes/1-env",
+            "kubernetes/easy-kubernetes/2-handson",
+            "kubernetes/easy-kubernetes/3-inside",
+            "kubernetes/easy-kubernetes/4-problem",
+            "kubernetes/easy-kubernetes/5-object",
+          ]
+        }
+      ]
+    },
+    {
+      type: "category",
       label: "책",
       items: [
         {
