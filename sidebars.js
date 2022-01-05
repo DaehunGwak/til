@@ -207,6 +207,7 @@ module.exports = {
             "books/refactoring/08",
             "books/refactoring/09",
             "books/refactoring/10",
+            "books/refactoring/11",
           ]
         },
         "books/clean-coder",
