@@ -6,27 +6,27 @@
 <meta name="generator" content="Docusaurus v2.0.0-alpha.70">
 <link rel="alternate" type="application/rss+xml" href="/til/blog/rss.xml" title="Ordi's Today I Learned Blog RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/til/blog/atom.xml" title="Ordi's Today I Learned Blog Atom Feed"><title data-react-helmet="true">patterns | Ordi&#x27;s Today I Learned</title><meta data-react-helmet="true" name="twitter:card" content="summary_large_image"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_version" content="current"><meta data-react-helmet="true" name="docusaurus_tag" content="docs-default-current"><meta data-react-helmet="true" property="og:title" content="patterns | Ordi&#x27;s Today I Learned"><meta data-react-helmet="true" name="description" content="클린코드에 이해하는데 필요한 패턴"><meta data-react-helmet="true" property="og:description" content="클린코드에 이해하는데 필요한 패턴"><meta data-react-helmet="true" property="og:url" content="https://daehungwak.github.io/til/docs/java/cleancode/patterns"><link data-react-helmet="true" rel="shortcut icon" href="/til/img/favicon.ico"><link data-react-helmet="true" rel="canonical" href="https://daehungwak.github.io/til/docs/java/cleancode/patterns"><link rel="stylesheet" href="/til/styles.da54caf6.css">
-<link rel="preload" href="/til/styles.801e2497.js" as="script">
-<link rel="preload" href="/til/runtime~main.78d7dfc5.js" as="script">
-<link rel="preload" href="/til/main.a43c95a7.js" as="script">
-<link rel="preload" href="/til/1.203bbe2a.js" as="script">
-<link rel="preload" href="/til/125.bcd7e34b.js" as="script">
-<link rel="preload" href="/til/126.4c437de2.js" as="script">
-<link rel="preload" href="/til/935f2afb.dfbf0b1b.js" as="script">
-<link rel="preload" href="/til/124.eb9700d4.js" as="script">
-<link rel="preload" href="/til/2976d0c2.d5b082a8.js" as="script">
+<link rel="preload" href="/til/styles.a78fbdbf.js" as="script">
+<link rel="preload" href="/til/runtime~main.015f13a2.js" as="script">
+<link rel="preload" href="/til/main.50af69ec.js" as="script">
+<link rel="preload" href="/til/1.b5fd1a6e.js" as="script">
+<link rel="preload" href="/til/127.3df0ba9d.js" as="script">
+<link rel="preload" href="/til/128.98c298d7.js" as="script">
+<link rel="preload" href="/til/935f2afb.28e6595b.js" as="script">
+<link rel="preload" href="/til/126.875b36d3.js" as="script">
+<link rel="preload" href="/til/2976d0c2.7eebe479.js" as="script">
 </head>
 <body>
 <script>!function(){function e(e){document.documentElement.setAttribute("data-theme",e)}var t=function(){var e=null;try{e=localStorage.getItem("theme")}catch(e){}return e}();null!==t?e(t):window.matchMedia("(prefers-color-scheme: dark)").matches?e("dark"):window.matchMedia("(prefers-color-scheme: light)").matches?e("light"):e("dark")}()</script><div id="__docusaurus">
 <nav aria-label="Skip navigation links"><button type="button" tabindex="0" class="skipToContent_11B0">Skip to main content</button></nav><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><div aria-label="Navigation bar toggle" class="navbar__toggle" role="button" tabindex="0"><svg aria-label="Menu" width="30" height="30" viewBox="0 0 30 30" role="img" focusable="false"><title>Menu</title><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></div><a class="navbar__brand" href="/til/"><strong class="navbar__title">Ordi TIL 📚</strong></a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/til/docs/">Docs</a></div><div class="navbar__items navbar__items--right"><a href="https://daehungwak.github.io/" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">Blog</a><a href="https://github.com/DaehunGwak/" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub</a><div class="react-toggle react-toggle--disabled displayOnlyInLargeViewport_2N3Q"><div class="react-toggle-track"><div class="react-toggle-track-check"><span class="toggle_3NWk">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_3NWk">🌞</span></div></div><div class="react-toggle-thumb"></div><input type="checkbox" disabled="" aria-label="Dark mode toggle" class="react-toggle-screenreader-only"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a class="navbar__brand" href="/til/"><strong class="navbar__title">Ordi TIL 📚</strong></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item"><a aria-current="page" class="menu__link navbar__link--active" href="/til/docs/">Docs</a></li><li class="menu__list-item"><a href="https://daehungwak.github.io/" target="_blank" rel="noopener noreferrer" class="menu__link">Blog</a></li><li class="menu__list-item"><a href="https://github.com/DaehunGwak/" target="_blank" rel="noopener noreferrer" class="menu__link">GitHub</a></li></ul></div></div></div></nav><div class="main-wrapper"><div class="docPage_vMrn"><main class="docMainContainer_2iGs"><div class="container padding-vert--lg docItemWrapper_1bxp"><div class="row"><div class="col docItemCol_U38p"><div class="docItemContainer_a7m4"><article><header><h1 class="docTitle_Oumm">patterns</h1></header><div class="markdown"><blockquote><p>클린코드에 이해하는데 필요한 패턴</p></blockquote><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_prK2" id="template-method-패턴"></a>Template Method 패턴<a class="hash-link" href="#template-method-패턴" title="Direct link to heading">#</a></h2><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_prK2" id="strategy-패턴"></a>Strategy 패턴<a class="hash-link" href="#strategy-패턴" title="Direct link to heading">#</a></h2></div></article><div class="margin-vert--xl"><div class="row"><div class="col"><a href="https://github.com/daehungwak/til/edit/main/docs/java/cleancode/patterns.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="1.2em" width="1.2em" preserveAspectRatio="xMidYMid meet" role="img" viewBox="0 0 40 40" class="iconEdit_2LL7"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col text--right"><em><small>Last updated on <time datetime="2021-05-16T16:19:16.000Z" class="docLastUpdatedAt_1Qna">2021-5-17</time></small></em></div></div></div><div class="margin-vert--lg"><nav class="pagination-nav" aria-label="Blog list page navigation"><div class="pagination-nav__item"></div><div class="pagination-nav__item pagination-nav__item--next"></div></nav></div></div></div><div class="col col--3"><div class="tableOfContents_2xL- thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#template-method-패턴" class="table-of-contents__link">Template Method 패턴</a></li><li><a href="#strategy-패턴" class="table-of-contents__link">Strategy 패턴</a></li></ul></div></div></div></div></main></div></div><footer class="footer"><div class="container"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2022 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
-<script src="/til/styles.801e2497.js"></script>
-<script src="/til/runtime~main.78d7dfc5.js"></script>
-<script src="/til/main.a43c95a7.js"></script>
-<script src="/til/1.203bbe2a.js"></script>
-<script src="/til/125.bcd7e34b.js"></script>
-<script src="/til/126.4c437de2.js"></script>
-<script src="/til/935f2afb.dfbf0b1b.js"></script>
-<script src="/til/124.eb9700d4.js"></script>
-<script src="/til/2976d0c2.d5b082a8.js"></script>
+<script src="/til/styles.a78fbdbf.js"></script>
+<script src="/til/runtime~main.015f13a2.js"></script>
+<script src="/til/main.50af69ec.js"></script>
+<script src="/til/1.b5fd1a6e.js"></script>
+<script src="/til/127.3df0ba9d.js"></script>
+<script src="/til/128.98c298d7.js"></script>
+<script src="/til/935f2afb.28e6595b.js"></script>
+<script src="/til/126.875b36d3.js"></script>
+<script src="/til/2976d0c2.7eebe479.js"></script>
 </body>
 </html>
