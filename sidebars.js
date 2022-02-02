@@ -34,9 +34,9 @@ module.exports = {
       items: [
         {
           type: "category",
-          label: "SpringRunner 101: 스프링 코어",
+          label: "nextstep - ATTD",
           items: [
-            "spring/fastcampus/springrunner101/00",
+            "spring/nextstep-attd/1-week",
           ],
         },
         {
